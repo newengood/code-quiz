@@ -8,6 +8,13 @@ li {
     display: inline;
 }
 
-#time {
+#time, #timer-count {
     float: right;
 }
+
+/* hides answers until called */
+
+.hidden {
+  display:none;
+}
+
