@@ -81,17 +81,16 @@ function nextQuestion() {
 
 function  showAnswer() {
     if (i === 0) {
+        console.log("test")
         document.getElementById("answer00").style.display = "inline-block";
         
     }
     else if (i === 1) {
-        console.log("test")
         document.getElementById("answer00").style.display = "none";
         document.getElementById("answer01").style.display = "inline-block";
         
     }
     else if (i === 2) {
-        console.log("test2")
         document.getElementById("answer01").style.display = "none";
         document.getElementById("answer02").style.display = "inline-block";
     }
