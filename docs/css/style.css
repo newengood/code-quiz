@@ -8,8 +8,6 @@ li {
     display: inline;
 }
 
-/* style header */
-
 #time, #timer-count {
     float: right;
 }
@@ -18,35 +16,4 @@ li {
 
 .hidden {
   display:none;
-}
-
-/* style main card */
-
-#card {
-  background-color: white;
-  color: black;   
-  display: flex;
-  justify-content: center;
-  border-style: solid;
-  margin: 300px;
-  padding: 50px;
-}
-
-/* style body */
-
-body {
-  background-color:grey;
-  color: white;
-}
-
-/* style header */
-
-header {
-  background-color:white;
-  color:black;
-  border-style: solid;
-}
-
-header:hover {
-  font-weight: bolder;
 }
