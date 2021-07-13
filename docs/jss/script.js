@@ -23,12 +23,14 @@ var timer;
 var winCounter;
 var isWin = false;
 var i = 0;
+var score =0;
 
 
 var startButton = document.querySelector("#start-button");
 var timerElement = document.querySelector("#timer-count");
 var card = document.querySelector("#card");
-var answer = document.querySelectorAll(".correctBtn");
+var correctAnswer = document.querySelectorAll(".correctBtn");
+var incorrectAnswer = document.querySelectorAll(".incorrectBtn");
 
 
 // Create Questions
@@ -45,17 +47,28 @@ var questions = ["Inside which HTML element do we put the JavaScript?",
    "How do you declare a JavaScript variable?",
 ];
 
+// create winning scenario
+
+var win = "Congratulations! You won the game! Enter your Initials"; 
+
+// create losing scenario
+
+var lose = "Yikes! You lost. Your score is " + score;
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
 
 
 // correct answer is chosen
-answer.forEach(function(button) {
+correctAnswer.forEach(function(button) {
    button.addEventListener("click", generateNextQuestion);
+   score ++;
 })
-// answer.addEventListener("click", generateNextQuestion);
 
+// incorrect answer is chosen
+incorrectAnswer.forEach(function(button) {
+    button.addEventListener("click", minusTime)
+})
 
 // Function to start the game
 function startGame() {
@@ -73,6 +86,16 @@ function generateNextQuestion() {
    nextQuestion();
 }
 
+function minusTime() {
+    if (timerCount <= 10) {
+        timerCount = 1;
+        loseGame();
+    }
+    else {
+        timerCount = timerCount - 10;
+    }
+}
+
 
 function nextQuestion() {
    card.textContent = questions[i];
@@ -82,13 +105,11 @@ function nextQuestion() {
 function  showAnswer() {
    if (i === 0) {
        document.getElementById("answer00").style.display = "inline-block";
-       
    }
    else if (i === 1) {
        console.log("test")
        document.getElementById("answer00").style.display = "none";
        document.getElementById("answer01").style.display = "inline-block";
-       
    }
    else if (i === 2) {
        console.log("test2")
@@ -125,6 +146,7 @@ function  showAnswer() {
    }
    else if (i === 10) {
        document.getElementById("answer09").style.display = "none";
+       winGame();
    }
 }
 
@@ -137,17 +159,35 @@ function startTimer() {
      timerElement.textContent = timerCount;
      if (timerCount >= 0) {
        // Tests if win condition is met
-       if (isWin && timerCount > 0) {
+       if (i === 10 && timerCount > 0) {
          // Clears interval and stops timer
          clearInterval(timer);
          winGame();
        }
      }
      // Tests if time has run out
-     if (timerCount === 0) {
+     if (timerCount <= 0) {
        // Clears interval
        clearInterval(timer);
        loseGame();
      }
    }, 1000);
+ }
+
+ function winGame() {
+     card.textContent = win;
+ }
+
+ function loseGame() {
+    document.getElementById("answer00").style.display = "none";
+    document.getElementById("answer01").style.display = "none";
+    document.getElementById("answer02").style.display = "none";
+    document.getElementById("answer03").style.display = "none";
+    document.getElementById("answer04").style.display = "none";
+    document.getElementById("answer05").style.display = "none";
+    document.getElementById("answer06").style.display = "none";
+    document.getElementById("answer07").style.display = "none";
+    document.getElementById("answer08").style.display = "none";
+    document.getElementById("answer09").style.display = "none";
+     card.textContent = lose;
  }
