@@ -23,14 +23,15 @@ var timer;
 var winCounter;
 var isWin = false;
 var i = 0;
-var score =0;
-
+var score = 0;
 
 var startButton = document.querySelector("#start-button");
 var timerElement = document.querySelector("#timer-count");
 var card = document.querySelector("#card");
 var correctAnswer = document.querySelectorAll(".correctBtn");
 var incorrectAnswer = document.querySelectorAll(".incorrectBtn");
+var initials = document.getElementById("initialsText");
+var submitButton = document.getElementById("submit")
 
 
 // Create Questions
@@ -146,6 +147,7 @@ function  showAnswer() {
    }
    else if (i === 10) {
        document.getElementById("answer09").style.display = "none";
+       document.getElementById("leaderboard").style.display = "inline-block";
        winGame();
    }
 }
@@ -176,6 +178,7 @@ function startTimer() {
 
  function winGame() {
      card.textContent = win;
+     renderScore();
  }
 
  function loseGame() {
@@ -189,5 +192,24 @@ function startTimer() {
     document.getElementById("answer07").style.display = "none";
     document.getElementById("answer08").style.display = "none";
     document.getElementById("answer09").style.display = "none";
-     card.textContent = lose;
+    card.textContent = lose;
+    renderScore();
+ }
+submitButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    var finalScore = {
+        initials: initials.value,
+        score: score
+    };
+
+    localStorage.setItem("finalScore", JSON.stringify(finalScore));
+    renderScore();
+});
+
+function renderScore() {
+     var lastScore = JSON.parse(localStorage.getItem("finalScore"));
+     if (lastScore !== null) {
+         document.querySelector("#scores").textContent = lastScore.initials + " answered " + lastScore.score + " questions correctly!";
+     }
  }
