@@ -1,6 +1,10 @@
 # Taylor Anderson
 # 04 Web APIs: Code Quiz
 
+# Screenshot
+
+
+
 ## Acceptance Criteria
 
 ```
