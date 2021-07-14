@@ -1,22 +1,3 @@
-// create high scores link
-// create timer
-
-// create start button
-    // create questions
-    // create answers
-    // if correct answer is clicked
-        // score ++
-        // next question
-    // if incorrect answer is clicked
-        // time --
-    // when time is over
-        // show score
-        // enter name and submit and go to leaderboard
-    // leaderboard
-        // go back button
-        // clear leaderboard button
-    
-
 //declare variables
 var timerCount;
 var timer; 
@@ -25,13 +6,17 @@ var isWin = false;
 var i = 0;
 var score = 0;
 
+var viewHighScores = document.querySelector("#highScore");
 var startButton = document.querySelector("#start-button");
+var playAgainButton = document.querySelectorAll(".playAgain");
+var highScoresButton = document.querySelector("#highScores");
 var timerElement = document.querySelector("#timer-count");
 var card = document.querySelector("#card");
 var correctAnswer = document.querySelectorAll(".correctBtn");
 var incorrectAnswer = document.querySelectorAll(".incorrectBtn");
 var initials = document.getElementById("initialsText");
-var submitButton = document.getElementById("submit")
+var submitButton = document.getElementById("submit");
+var highScores = [];
 
 
 // Create Questions
@@ -54,7 +39,7 @@ var win = "Congratulations! You won the game! Enter your Initials";
 
 // create losing scenario
 
-var lose = "Yikes! You lost. Your score is " + score;
+var lose = "Yikes! You lost.";
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
@@ -63,17 +48,51 @@ startButton.addEventListener("click", startGame);
 // correct answer is chosen
 correctAnswer.forEach(function(button) {
    button.addEventListener("click", generateNextQuestion);
-   score ++;
 })
 
 // incorrect answer is chosen
 incorrectAnswer.forEach(function(button) {
-    button.addEventListener("click", minusTime)
+    button.addEventListener("click", minusTime);
 })
+
+// start a new game
+playAgainButton.forEach(function(button) {
+    button.addEventListener("click", newGame);
+})
+
+function newGame() {
+    window.location.reload();
+}
+
+//view highscores
+
+highScoresButton.addEventListener("click", showHighScores);
+
+function showHighScores() {
+    document.getElementById("card").style.display = "none";
+    document.getElementById("scores").style.display = "none";
+    document.getElementById("answer00").style.display = "none";
+    document.getElementById("answer01").style.display = "none";
+    document.getElementById("answer02").style.display = "none";
+    document.getElementById("answer03").style.display = "none";
+    document.getElementById("answer04").style.display = "none";
+    document.getElementById("answer05").style.display = "none";
+    document.getElementById("answer06").style.display = "none";
+    document.getElementById("answer07").style.display = "none";
+    document.getElementById("answer08").style.display = "none";
+    document.getElementById("answer09").style.display = "none";
+    document.getElementById("highScoresPage").style.display = "inline-block";
+    var storedScores = JSON.parse(localStorage.getItem("highScores"));
+    document.getElementById("highScoresPage").innerHTML = JSON.stringify(storedScores);
+
+}
+
+//show high scores when clicked in header
+
+viewHighScores.addEventListener("click", showHighScores);
 
 // Function to start the game
 function startGame() {
-   isWin = false;
  timerCount = 50;
  // disable start button during game
  startButton.disabled = true;
@@ -99,6 +118,7 @@ function minusTime() {
 
 
 function nextQuestion() {
+    score ++;
    card.textContent = questions[i];
    showAnswer();
 } 
@@ -108,12 +128,10 @@ function  showAnswer() {
        document.getElementById("answer00").style.display = "inline-block";
    }
    else if (i === 1) {
-       console.log("test")
        document.getElementById("answer00").style.display = "none";
        document.getElementById("answer01").style.display = "inline-block";
    }
    else if (i === 2) {
-       console.log("test2")
        document.getElementById("answer01").style.display = "none";
        document.getElementById("answer02").style.display = "inline-block";
    }
@@ -192,6 +210,8 @@ function startTimer() {
     document.getElementById("answer07").style.display = "none";
     document.getElementById("answer08").style.display = "none";
     document.getElementById("answer09").style.display = "none";
+    document.getElementById("scores").style.display = "none";
+    document.getElementById("leaderboard").style.display = "inline-block";
     card.textContent = lose;
     renderScore();
  }
@@ -203,6 +223,9 @@ submitButton.addEventListener("click", function(event) {
         score: score
     };
 
+    highScores.push(finalScore);
+
+    localStorage.setItem("highScores", JSON.stringify(highScores));
     localStorage.setItem("finalScore", JSON.stringify(finalScore));
     renderScore();
 });
