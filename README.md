@@ -25,7 +25,7 @@ THEN I can save my initials and my score - [X]
 
 ### Deployment: 32%
 
-* Application deployed at live URL. - []
+* Application deployed at live URL. - [X]
 
 * Application loads with no errors. - [X]
 
