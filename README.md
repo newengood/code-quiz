@@ -3,7 +3,11 @@
 
 # Screenshot
 
+![Screenshot](./docs/images/screenshot.png)
 
+# Deployed Application
+
+https://newengood.github.io/homework-04-codeQuiz/
 
 ## Acceptance Criteria
 
