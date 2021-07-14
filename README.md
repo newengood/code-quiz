@@ -37,7 +37,7 @@ THEN I can save my initials and my score - [X]
 
 * Application loads with no errors. - [X]
 
-* Application GitHub URL submitted. - []
+* Application GitHub URL submitted. - [X]
 
 * GitHub repository contains application code. - [X]
 
