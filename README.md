@@ -63,4 +63,3 @@ THEN I can save my initials and my score - [X]
 
 ---
 
-© 2021 Newengood
