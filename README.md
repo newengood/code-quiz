@@ -7,7 +7,7 @@
 
 # Deployed Application
 
-https://newengood.github.io/homework-04-codeQuiz/
+https://newengood.github.io/homework-04-code-quiz/
 
 ## Acceptance Criteria
 
